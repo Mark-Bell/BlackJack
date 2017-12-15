@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;  
-using Windows.Foundation.Collections;
+using Windows.Foundation.Collections;    
 using Windows.UI.Xaml;   
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -44,7 +44,7 @@ namespace MarkBell_Project
         {
             for (int i = 51; i >= 0; i--)
             {
-
+    
                 Random j = new Random();
                 string[] shuffledDeck = deck.OrderBy(x => j.Next()).ToArray();
             }
