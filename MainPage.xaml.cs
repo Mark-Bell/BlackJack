@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 using System.Collections.Generic;
-using System.IO;  
+using System.IO;     
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;  
@@ -33,7 +33,7 @@ namespace MarkBell_Project
                 deck[i] = ((i + 1) + "D");
                 deck[i + 13] = ((i + 1) + "S");
                 deck[i + 26] = ((i + 1) + "H");
-                deck[i + 39] = ((i + 1) + "C");
+                deck[i + 39] = ((i + 1) + "C");  
             }
                 shuffle();
 
