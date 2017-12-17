@@ -1,2 +1,0 @@
-# BlackJack
-C# project
