@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid MaxWidth="1500" MaxHeight="1000">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -15,60 +15,75 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*" />
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        
-        
 
-        <StackPanel Background="blue" >
-         
+
+
+        <StackPanel>
+            <StackPanel.Background>
+                <ImageBrush ImageSource="Assets/Pushups.png" />
+            </StackPanel.Background>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Background ="White">
+
+            <TextBlock FontStretch="Expanded" TextAlignment="Center"
+                       Text="This App is designed to assist you in your morning Workout.&#x0a;Complete 3 sets of this routine for a full body workout. &#x0a; Ensure to keep Hydrated, and take a 1.5 minute break between sets&#x0a;, a timer will be provided for breaks, and timed exercises.&#x0a; Press the button in the center of the screen to begin."
+                       TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="Assets/Squats.png" />
+            </StackPanel.Background>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="Assets/Crunches.png" />
+            </StackPanel.Background>
+
 
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Background ="red">
+        <StackPanel Grid.Row="1" Grid.Column="1">
+
            
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="Assets/Lunges.png" />
+            </StackPanel.Background>
 
         </StackPanel>
 
-        <StackPanel Grid.Column="2" Background ="purple" >
-
-
-        </StackPanel>
-
-        <StackPanel Grid.Row="1" Background ="green" >
-
-
-        </StackPanel>
-
-        <StackPanel Grid.Row="1" Grid.Column="1" Background ="yellow" >
-
-
-        </StackPanel>
-
-
-        <StackPanel Grid.Row="1" Grid.Column="2" Background ="orange" >
-
+        <StackPanel Grid.Row="2" >
+            <StackPanel.Background>
+                <ImageBrush ImageSource="Assets/Wallsit.png" />
+            </StackPanel.Background>
 
         </StackPanel>
 
 
-        <StackPanel Grid.Row="2" Background ="Indigo">
-
-
-        </StackPanel>
-
-
-        <StackPanel Grid.Row="2" Grid.Column="1" Background ="Violet" >
-
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="Assets/Triceps.png" />
+            </StackPanel.Background>
 
         </StackPanel>
 
 
-        <StackPanel Grid.Row="2" Grid.Column="2" Background ="pink" >
-
-
+        <StackPanel Grid.Row="2" Grid.Column="2">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="Assets/Planks.png" />
+            </StackPanel.Background>
         </StackPanel>
+
+        <Button Name="Begin" Content="Begin Workout" Grid.Column="1"  HorizontalAlignment="Stretch"  Grid.Row="1" Background="White" VerticalAlignment="Stretch" BorderThickness="5" BorderBrush="Black"/>
+
 
 
     </Grid>
