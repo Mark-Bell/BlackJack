@@ -1,4 +1,4 @@
-# MorningWorkout
+# ExerciseAssistant
 C# project
 
 This Program acts as a Digital assistant for Exercising.
