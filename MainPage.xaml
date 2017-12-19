@@ -97,6 +97,7 @@
         <!-- Exercise Grid -->
         <Grid Name="ExerciseGrid" Visibility="Collapsed">
             <!-- Display Name of Exercise -->
+            <TextBlock Name="SetCount" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="50" Text="Set1"></TextBlock>
             <TextBlock Name="Exercise" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Text=""></TextBlock>
             
             <!-- Display Timer Buttons for Wall Sit and Plank -->
@@ -120,10 +121,19 @@
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Name="TBCountDown" Text="90 Seconds Remaining"></TextBlock>
 
             <!-- Feeling Impatient? Here's a button to skip the Timer -->
+            <Button Width="200" Height="150" Name="SkipRest" Click="SkipRest_Click" Content="Skip Rest Period" Margin="0,300,0,0" Background="White" BorderThickness="3" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
 
         </Grid>
         <!-- End of Rest Grid-->
         
+        <!-- Final Grid for when all Exercises are Completed -->
+        <Grid Name="FinalGrid" Visibility="Collapsed">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"  FontSize="60" Text="Workout Complete&#x0a;Well Done!"></TextBlock>
+            <Button Width="200" Height="150" Name="ExitApp" Click="ExitApp_Click" Content="Exit" Margin="0,400,0,0" Background="White" BorderThickness="3" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+
+        </Grid>
+        <!-- End of Final Grid-->
+
     </Grid>
     <!-- End of Main Grid-->
 </Page>
