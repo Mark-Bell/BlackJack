@@ -24,7 +24,7 @@ namespace WorkoutAssistant
         public int Cycle = 0;
 
         //Variables for Timers
-        private int time = 5;
+        private int RTime = 5, PTime = 50, WSTime = 55;
         private DispatcherTimer Timer;
 
         //String array containing Exercises
@@ -66,8 +66,8 @@ namespace WorkoutAssistant
         private void WSBttn_Click(object sender, RoutedEventArgs e)
         {
             WSBttn.Visibility = Visibility.Collapsed;
-            WallSitCountdown.Text = ("Timer begin in 5");
-            time = 55;
+            WallSitCountdown.Text = ("Timer begins in 5");
+            WSTime = 55;
             CountDown1();
         }
 
@@ -75,8 +75,8 @@ namespace WorkoutAssistant
         private void PBttn_Click(object sender, RoutedEventArgs e)
         {
             PBttn.Visibility = Visibility.Collapsed;
-            PlankCountdown.Text = ("Timer begin in 5");
-            time = 50;
+            PlankCountdown.Text = ("Timer begins in 5");
+            PTime = 50;
             CountDown2();
         }
 
@@ -91,7 +91,7 @@ namespace WorkoutAssistant
         //Create Rest Timer for 90 Seconds
         public void Rest()
         {
-            time = 5;
+            RTime = 5;
             Set++;
             Timer = new DispatcherTimer();
             Timer.Interval = new TimeSpan(0, 0, 1);
@@ -126,17 +126,17 @@ namespace WorkoutAssistant
         {
             //remove unwanted CountDowns
             WallSitCountdown.Visibility = Visibility.Collapsed;
-            PlankCountdown.Visibility = Visibility.Visible;
+            PlankCountdown.Visibility = Visibility.Collapsed;
 
-            if (time > 0)
+            if (RTime > 0)
             {
-                time--;
-                TBCountDown.Text = (time.ToString() + " Seconds Remaining");
+                RTime--;
+                TBCountDown.Text = (RTime.ToString() + " Seconds Remaining");
             }
             else
             {
                 Timer.Stop();
-                time = 5;
+                RTime = 5;
                 if (Set == 7)
                 {
                     Set = 0;
@@ -154,18 +154,18 @@ namespace WorkoutAssistant
         void WSTimer_Tick(object sender, object e)
         {
 
-            if (time > 0)
+            if (WSTime > 0)
             {
-                time--;
-                if(time > 50)
-                WallSitCountdown.Text = ("Timer begins in " + (time-50).ToString());
+                WSTime--;
+                if(WSTime > 50)
+                WallSitCountdown.Text = ("Timer begins in " + (WSTime-50).ToString());
                 else
-                WallSitCountdown.Text = (time.ToString() + " Seconds Remaining");
+                WallSitCountdown.Text = (WSTime.ToString() + " Seconds Remaining");
             }
             else
             {
                 Timer.Stop();
-                time = 5;
+                WSTime = 5;
             }
         }
 
@@ -173,18 +173,18 @@ namespace WorkoutAssistant
         void PTimer_Tick(object sender, object e)
         {
 
-            if (time > 0)
+            if (PTime > 0)
             {
-                time--;
-                if (time > 45)
-                   PlankCountdown.Text = ("Timer begins in " + (time - 45).ToString());
+                PTime--;
+                if (PTime > 45)
+                   PlankCountdown.Text = ("Timer begins in " + (PTime - 45).ToString());
                 else
-                   PlankCountdown.Text = (time.ToString() + " Seconds Remaining");
+                   PlankCountdown.Text = (PTime.ToString() + " Seconds Remaining");
             }
             else
             {
                 Timer.Stop();
-                time = 5;
+                PTime = 5;
             }
         }
 
