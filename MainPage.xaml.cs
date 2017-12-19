@@ -55,10 +55,9 @@ namespace WorkoutAssistant
 
             //If WallSit is up, provide timer
             if (Set == 2)
-                WSBttn.Visibility = Visibility.Visible;
+                WSBttn.Visibility = Visibility.Visible;       
             else
                 WSBttn.Visibility = Visibility.Collapsed;
-
             //if Plank is up, provide timer
             if (Set == 4)
                 PBttn.Visibility = Visibility.Visible;
@@ -87,6 +86,10 @@ namespace WorkoutAssistant
         //Move from Exercise to Rest Period
         private void Increment_Click(object sender, RoutedEventArgs e)
         {
+            //Remove Existing timers
+            if (Set == 2 || Set == 4)
+                Timer.Stop();
+            
             ExerciseGrid.Visibility = Visibility.Collapsed;
             RestTime.Visibility = Visibility.Visible;
             Rest();
@@ -102,6 +105,7 @@ namespace WorkoutAssistant
             Timer.Tick += Timer_Tick;
             Timer.Start();
         }
+
 
         //Create 50 second CountDown for Wall Sit 
         private void CountDown1()
@@ -179,6 +183,7 @@ namespace WorkoutAssistant
             {
                 Timer.Stop();
                 WSTime = 55;
+                //IncrementExercise.Visibility = Visibility.Visible;
             }
         }
 
