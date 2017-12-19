@@ -6,10 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    
+    <!-- Main Grid-->
     <Grid Name="Main" MaxWidth="1500" MaxHeight="1000">
 
+        <!-- Initial Grid With Exercise Lists-->
         <Grid Name="Initial" Visibility="Visible">
+
+            <!-- Declare Rows and Columns -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -22,7 +26,7 @@
             </Grid.RowDefinitions>
 
 
-
+            <!-- Stack Panels to display Exercise Images-->
             <StackPanel>
                 <StackPanel.Background>
                     <ImageBrush ImageSource="Assets/Pushups.png" />
@@ -84,25 +88,42 @@
                 </StackPanel.Background>
             </StackPanel>
 
+            <!-- Button to Begin Workout Routine-->
             <Button Name="Begin" Click="Begin_Click" Content="Begin Workout" Grid.Column="1"  HorizontalAlignment="Stretch"
                 Grid.Row="1" Background="White" VerticalAlignment="Stretch" BorderThickness="5" BorderBrush="Black"/>
         </Grid>
         <!-- End of Initial Grid-->
 
-
+        <!-- Exercise Grid -->
         <Grid Name="ExerciseGrid" Visibility="Collapsed">
+            <!-- Display Name of Exercise -->
             <TextBlock Name="Exercise" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Text=""></TextBlock>
-            <TextBlock Visibility="Collapsed" HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Center" FontSize="50" Name="WallSitCountdown"></TextBlock>
-            <Button Name="IncrementExercise" Click="Increment_Click" Content="Completed" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Button>
+            
+            <!-- Display Timer Buttons for Wall Sit and Plank -->
+            <Button Visibility="Collapsed" Width="200" Height="150" Name="WSBttn" Click="WSBttn_Click" Content="Start Timer" Margin="0,300,0,0" Background="White" BorderThickness="3" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+            <Button Visibility="Collapsed" Width="200" Height="150" Name="PBttn" Click="PBttn_Click" Content="Start Timer" Margin="0,300,0,0" Background="White" BorderThickness="3" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+
+            <!-- Display Timers for Wall Sit and Plank -->
+            <TextBlock Visibility="Collapsed" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Center"  FontSize="50" Text="50 Seconds Remaining" Name="WallSitCountdown"></TextBlock>
+            <TextBlock Visibility="Collapsed" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Center"  FontSize="50" Text="45 Seconds Remaining" Name="PlankCountdown"></TextBlock>
+
+            <!-- Button to move on to next Exercise -->
+            <Button Name="IncrementExercise" Click="Increment_Click" Content="Completed" Margin="0,0,0,100" Width="150" Height="112" BorderThickness="3" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Button>
         </Grid>
         <!-- End of Second Grid-->
 
-
+        <!-- Rest Grid for between Exercises -->
         <Grid Name="RestTime" Visibility="Collapsed">
+            
+            <!-- Display Rest Message and Timer -->
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50" Text="Time for a Rest"></TextBlock>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Name="TBCountDown"></TextBlock>
-        </Grid>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Name="TBCountDown" Text="90 Seconds Remaining"></TextBlock>
 
+            <!-- Feeling Impatient? Here's a button to skip the Timer -->
+
+        </Grid>
+        <!-- End of Rest Grid-->
+        
     </Grid>
     <!-- End of Main Grid-->
 </Page>
