@@ -1,91 +1,108 @@
 <Page
-    x:Class="WeatherPanel.MainPage"
+    x:Class="WorkoutAssistant.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WeatherPanel"
+    xmlns:local="using:WorkoutAssistant"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid MaxWidth="1500" MaxHeight="1000">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
+    <Grid Name="Main" MaxWidth="1500" MaxHeight="1000">
+
+        <Grid Name="Initial" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
 
 
 
-        <StackPanel>
-            <StackPanel.Background>
-                <ImageBrush ImageSource="Assets/Pushups.png" />
-            </StackPanel.Background>
-        </StackPanel>
+            <StackPanel>
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="Assets/Pushups.png" />
+                </StackPanel.Background>
+            </StackPanel>
 
-        <StackPanel Grid.Column="1" Background ="White">
+            <StackPanel Grid.Column="1" Background ="White">
 
-            <TextBlock FontStretch="Expanded" TextAlignment="Center"
+                <TextBlock FontStretch="Expanded" TextAlignment="Center"
                        Text="This App is designed to assist you in your morning Workout.&#x0a;Complete 3 sets of this routine for a full body workout. &#x0a; Ensure to keep Hydrated, and take a 1.5 minute break between sets&#x0a;, a timer will be provided for breaks, and timed exercises.&#x0a; Press the button in the center of the screen to begin."
                        TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBlock>
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel Grid.Column="2">
-            <StackPanel.Background>
-                <ImageBrush ImageSource="Assets/Squats.png" />
-            </StackPanel.Background>
-        </StackPanel>
+            <StackPanel Grid.Column="2">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="Assets/Squats.png" />
+                </StackPanel.Background>
+            </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="0">
-            <StackPanel.Background>
-                <ImageBrush ImageSource="Assets/Crunches.png" />
-            </StackPanel.Background>
-
-
-        </StackPanel>
-
-        <StackPanel Grid.Row="1" Grid.Column="1">
-
-           
-        </StackPanel>
-
-        <StackPanel Grid.Row="1" Grid.Column="2">
-            <StackPanel.Background>
-                <ImageBrush ImageSource="Assets/Lunges.png" />
-            </StackPanel.Background>
-
-        </StackPanel>
-
-        <StackPanel Grid.Row="2" >
-            <StackPanel.Background>
-                <ImageBrush ImageSource="Assets/Wallsit.png" />
-            </StackPanel.Background>
-
-        </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="Assets/Crunches.png" />
+                </StackPanel.Background>
 
 
-        <StackPanel Grid.Row="2" Grid.Column="1">
-            <StackPanel.Background>
-                <ImageBrush ImageSource="Assets/Triceps.png" />
-            </StackPanel.Background>
+            </StackPanel>
 
-        </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1">
 
 
-        <StackPanel Grid.Row="2" Grid.Column="2">
-            <StackPanel.Background>
-                <ImageBrush ImageSource="Assets/Planks.png" />
-            </StackPanel.Background>
-        </StackPanel>
+            </StackPanel>
 
-        <Button Name="Begin" Content="Begin Workout" Grid.Column="1"  HorizontalAlignment="Stretch"  Grid.Row="1" Background="White" VerticalAlignment="Stretch" BorderThickness="5" BorderBrush="Black"/>
+            <StackPanel Grid.Row="1" Grid.Column="2">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="Assets/Lunges.png" />
+                </StackPanel.Background>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" >
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="Assets/Wallsit.png" />
+                </StackPanel.Background>
+
+            </StackPanel>
 
 
+            <StackPanel Grid.Row="2" Grid.Column="1">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="Assets/Triceps.png" />
+                </StackPanel.Background>
+
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="2" Grid.Column="2">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="Assets/Planks.png" />
+                </StackPanel.Background>
+            </StackPanel>
+
+            <Button Name="Begin" Click="Begin_Click" Content="Begin Workout" Grid.Column="1"  HorizontalAlignment="Stretch"
+                Grid.Row="1" Background="White" VerticalAlignment="Stretch" BorderThickness="5" BorderBrush="Black"/>
+        </Grid>
+        <!-- End of Initial Grid-->
+
+
+        <Grid Name="ExerciseGrid" Visibility="Collapsed">
+            <TextBlock Name="Exercise" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Text=""></TextBlock>
+            <TextBlock Visibility="Collapsed" HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Center" FontSize="50" Name="WallSitCountdown"></TextBlock>
+            <Button Name="IncrementExercise" Click="Increment_Click" Content="Completed" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Button>
+        </Grid>
+        <!-- End of Second Grid-->
+
+
+        <Grid Name="RestTime" Visibility="Collapsed">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50" Text="Time for a Rest"></TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Name="TBCountDown"></TextBlock>
+        </Grid>
 
     </Grid>
-
+    <!-- End of Main Grid-->
 </Page>
