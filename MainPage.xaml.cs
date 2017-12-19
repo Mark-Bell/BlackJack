@@ -13,42 +13,74 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace WorkoutAssistant
 {
     public sealed partial class MainPage : Page
 
 
     {
+        //Declare Variables
         public int Set = 0;
         public int Cycle = 0;
+
+        //Variables for Timers
         private int time = 5;
         private DispatcherTimer Timer;
 
-        public String[] ExerciseList = { "25 Pushups", "30 Crunches", "50 Second Wall Sit", "!0 Tricep Dips", "45 Second Plank", "30 Lunges (Per Leg)", "15 Squats" };
+        //String array containing Exercises
+        public String[] ExerciseList = { "25 Pushups", "30 Crunches", "50 Second Wall Sit", "10 Tricep Dips", "45 Second Plank", "30 Lunges (Per Leg)", "15 Squats" };
 
         public MainPage()
         {
+            //initialise
             this.InitializeComponent();
         }
 
+        //Begin Workout Routine
         private void Begin_Click(object sender, RoutedEventArgs e)
         {
             Initial.Visibility = Visibility.Collapsed;
             IncrementExercises();
         }
 
+        //Advance to Rest Period, then next exercise
         public void IncrementExercises()
         {
             ExerciseGrid.Visibility = Visibility.Visible;
             Exercise.Text = (ExerciseList[Set]);
-            if(Set == 3)
-            {
-                CountDown1();
-            }
+
+            //If WallSit is up, provide timer
+            if (Set == 2)
+                WSBttn.Visibility = Visibility.Visible;
+            else
+                WSBttn.Visibility = Visibility.Collapsed;
+
+            //if Plank is up, provide timer
+            if (Set == 4)
+                PBttn.Visibility = Visibility.Visible;
+            else
+                PBttn.Visibility = Visibility.Collapsed;
         }
 
+        //Button to begin Wall Sit CountDown
+        private void WSBttn_Click(object sender, RoutedEventArgs e)
+        {
+            WSBttn.Visibility = Visibility.Collapsed;
+            WallSitCountdown.Text = ("Timer begin in 5");
+            time = 55;
+            CountDown1();
+        }
+
+        //Button to begin Plank CountDown
+        private void PBttn_Click(object sender, RoutedEventArgs e)
+        {
+            PBttn.Visibility = Visibility.Collapsed;
+            PlankCountdown.Text = ("Timer begin in 5");
+            time = 50;
+            CountDown2();
+        }
+
+        //Move from Exercise to Rest Period
         private void Increment_Click(object sender, RoutedEventArgs e)
         {
             ExerciseGrid.Visibility = Visibility.Collapsed;
@@ -56,23 +88,46 @@ namespace WorkoutAssistant
             Rest();
         }
 
+        //Create Rest Timer for 90 Seconds
         public void Rest()
         {
+            time = 5;
             Set++;
             Timer = new DispatcherTimer();
-            Timer.Interval = new TimeSpan(0, 0, 0);
+            Timer.Interval = new TimeSpan(0, 0, 1);
             Timer.Tick += Timer_Tick;
             Timer.Start();
         }
 
+        //Create 50 second CountDown for Wall Sit 
         public void CountDown1()
         {
-            WallSitCountdown.Visibility = Visibility.Visible;
 
+            WallSitCountdown.Visibility = Visibility.Visible;
+            Timer = new DispatcherTimer();
+            Timer.Interval = new TimeSpan(0, 0, 1);
+            Timer.Tick += WSTimer_Tick;
+            Timer.Start();
         }
 
+        //Create 45 Second CountDown for Plank
+        public void CountDown2()
+        {
+
+            PlankCountdown.Visibility = Visibility.Visible;
+            Timer = new DispatcherTimer();
+            Timer.Interval = new TimeSpan(0, 0, 1);
+            Timer.Tick += PTimer_Tick;
+            Timer.Start();
+        }
+
+        //Ticker for Rest CountDown
         void Timer_Tick(object sender, object e)
         {
+            //remove unwanted CountDowns
+            WallSitCountdown.Visibility = Visibility.Collapsed;
+            PlankCountdown.Visibility = Visibility.Visible;
+
             if (time > 0)
             {
                 time--;
@@ -87,11 +142,52 @@ namespace WorkoutAssistant
                     Set = 0;
                     Cycle++;
                 }
-                IncrementExercises();
+
+                //Reset elements
+                TBCountDown.Text = ("90 Seconds Remaining");
                 RestTime.Visibility = Visibility.Collapsed;
+                IncrementExercises();
             }
         }
 
-    }
+        //Ticker for WallSit CountDown
+        void WSTimer_Tick(object sender, object e)
+        {
 
+            if (time > 0)
+            {
+                time--;
+                if(time > 50)
+                WallSitCountdown.Text = ("Timer begins in " + (time-50).ToString());
+                else
+                WallSitCountdown.Text = (time.ToString() + " Seconds Remaining");
+            }
+            else
+            {
+                Timer.Stop();
+                time = 5;
+            }
+        }
+
+        //Ticker for Plank CountDown
+        void PTimer_Tick(object sender, object e)
+        {
+
+            if (time > 0)
+            {
+                time--;
+                if (time > 45)
+                   PlankCountdown.Text = ("Timer begins in " + (time - 45).ToString());
+                else
+                   PlankCountdown.Text = (time.ToString() + " Seconds Remaining");
+            }
+            else
+            {
+                Timer.Stop();
+                time = 5;
+            }
+        }
+
+
+    }
 }
