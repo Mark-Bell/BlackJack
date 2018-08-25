@@ -13,8 +13,12 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+
+
 namespace WorkoutAssistant
 {
+
+
     public sealed partial class MainPage : Page
 
 
@@ -30,10 +34,11 @@ namespace WorkoutAssistant
         //String array containing Exercises
         public String[] ExerciseList = { "25 Pushups", "30 Crunches", "50 Second Wall Sit", "10 Tricep Dips", "45 Second Plank", "30 Lunges (Per Leg)", "15 Squats" };
 
+
         public MainPage()
         { 
                 this.InitializeComponent();
-      
+
         }
 
         //Begin Workout Routine
